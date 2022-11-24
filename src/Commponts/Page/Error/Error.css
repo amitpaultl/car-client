@@ -1,0 +1,88 @@
+.pages-404 {
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    opacity: 1;
+    min-height: 100vh;
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    background: #1B1B1B;
+}
+
+.pages-404 .error404 {
+    line-height: .8;
+    margin: 10px 0 40px;
+    font-weight: 700;
+    font-size: 264px;
+    opacity: 2;
+    color: #3F3F3F;
+    text-shadow: 1px 1px 5px rgb(0 0 0 / 40%);
+}
+
+.pages-404 .nobottomborder h1 {
+    font-size: 35px;
+    font-weight: 300;
+    color: #8a8989;
+}
+
+.pages-404 .nobottomborder p {
+    line-height: 30px;
+    font-size: 17px;
+    color: #8a8989;
+}
+
+.pages-404 .newsletter-content-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.pages-404 .newsletter-form .form-control {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    box-shadow: none;
+    color: #999999;
+    padding: 15px 20px 15px 20px;
+    height: 50px;
+    font-size: 15px;
+    background: #fff;
+    width: 70%;
+}
+
+.pages-404 .newsletter-form .btn-theme {
+    border: none;
+    color: #fff;
+    padding: 15px 5px 15px 5px;
+    position: absolute;
+    font-size: 15px;
+    height: 50px;
+    top: 0;
+    right: 0;
+    text-transform: inherit;
+    font-weight: 400;
+    border-radius: 3px;
+    margin-left: 20px;
+    width: 25%;
+}
+
+.pages-404 .btn {
+    background: #f0151f;
+}.pages-404 .btn:hover {
+    background: #850707;
+}
+
+.pages-404 .nobottomborder p {
+    line-height: 30px;
+    font-size: 17px;
+    color: #8a8989;
+}
+
+form.newsletter-form button svg {
+    width: 20px;
+}

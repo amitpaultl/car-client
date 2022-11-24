@@ -33,21 +33,22 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="mx-auto my-2 my-lg-0 menu"
-            style={{ maxHeight: '100px' }}
+            
             navbarScroll
           >
-            <Navbar.Brand><NavLink to={'/'}>Home</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink to={'/singup'}>singup</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink to={'/login'}>login</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
 
 
             <NavDropdown className='category-menu' title="Category" id="navbarScrollingDropdown">
 
               <li>
-                <NavLink to={'/login'}>login</NavLink>
+                <NavLink to={'/login'}>TOYOTA</NavLink>
               </li>
               <li>
-                <NavLink to={'/login'}>login</NavLink>
+                <NavLink to={'/login'}>BMW</NavLink>
+              </li>
+              <li>
+                <NavLink to={'/login'}>BENTLEY</NavLink>
               </li>
 
             </NavDropdown>
