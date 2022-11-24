@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './singup.css'
 import google from '../../assert/image/Group 573.png'
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Singup = () => {
+    // useContext
+    const {createUser,updateUserProfile,verifyEmail,signInWithGoogle,} = useContext(AuthContext);
+    // check box
+    const [check ,setCheck] = useState(false)
+    // handler form
+    const handlerForm = e =>{
+        e.preventDefault()
+        const common = e.target;
+        const name = common.name.value
+        const email = common.email.value
+        const password = common.password.value
+        const checkBox = check
+
+        createUser(email,password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+          });
+        
+    }
     return (
         <div className='login-section mx-auto'>
 
@@ -12,7 +40,7 @@ const Singup = () => {
                     WELCOME TO
                 </h2>
                 <h3>Signup into your account</h3>
-                <form>
+                <form onSubmit={handlerForm}>
                     <div className="form-group clearfix">
                         <input name="name" type="text" className="form-control" placeholder="Name Address" aria-label="Name" />
                     </div>
@@ -24,7 +52,7 @@ const Singup = () => {
                     </div>
                     <div className="form-group checkbox clearfix">
                         <div className="form-check checkbox-theme float-start">
-                            <input className="form-check-input" type="checkbox" id="rememberMe" />
+                            <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={()=>setCheck(!check)}  />
                             <label className="form-check-label" htmlFor="rememberMe">
                                 Are You Seller Account Please Check It
                             </label>
