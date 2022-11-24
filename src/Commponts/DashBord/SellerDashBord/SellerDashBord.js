@@ -3,6 +3,35 @@ import './SellerDashBord.css'
 
 const SellerDashBord = () => {
 
+    const productHandler=(e)=>{
+        e.preventDefault()
+        const common = e.target;
+        const productname = common.productname.value
+        const location = common.location.value
+        const category = common.category.value
+        const conation = common.conation.value
+        const resalePrice = common.resalePrice.value
+        const originalPrice = common.originalPrice.value
+        const phone = common.phone.value
+        const year = common.year.value
+        const description = common.description.value
+
+        const product = {
+            productname,
+            location,
+            category,
+            conation,
+            resalePrice,
+            originalPrice,
+            phone,
+            year,
+            description,
+
+        }
+
+        console.log(product);
+    }
+
     return (
         <div className='SellerDashBord'>
             <div className="featured-title">
@@ -12,7 +41,7 @@ const SellerDashBord = () => {
                 </div>
             </div>
             <div className="container">
-                <form>
+                <form onSubmit={productHandler}>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="add-product">
@@ -70,10 +99,10 @@ const SellerDashBord = () => {
                         <div className="col-md-12">
                             <div className="form-group clearfix">
                                 <label htmlFor="">Product Description</label>
-                                <textarea placeholder='Description' className='product-dis' name="" id="" cols="30" rows="10"></textarea>
+                                <textarea placeholder='Description' className='product-dis' name="description" id="" cols="30" rows="10"></textarea>
                             </div>
                         </div>
-                        <div className="addProduct">
+                        <div className="addProduct ">
 
                             <button type="submit">Submit</button>
                         </div>
