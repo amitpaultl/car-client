@@ -37,6 +37,7 @@ function NavScrollExample() {
             navbarScroll
           >
             <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink  to={'/carlist'}>Carlist</NavLink></Navbar.Brand>
 
 
             <NavDropdown className='category-menu' title="Category" id="navbarScrollingDropdown">

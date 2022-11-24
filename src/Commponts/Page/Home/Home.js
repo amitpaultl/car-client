@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Featured from './Featured/Featured';
 import './Home.css'
 
 const Home = () => {
@@ -19,6 +20,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            {/* Featured area  */}
+            <Featured></Featured>
         </div>
     );
 };

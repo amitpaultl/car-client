@@ -1,6 +1,7 @@
 import React from 'react';
+import './Featured.css'
 
-const Carlist = () => {
+const Featured = () => {
     return (
         <div className='featured-car'>
             <div className="featured-title">
@@ -60,4 +61,4 @@ const Carlist = () => {
     );
 };
 
-export default Carlist;
+export default Featured;
