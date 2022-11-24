@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 import './SellerDashBord.css'
 
 const SellerDashBord = () => {
+    const { user } = useContext(AuthContext);
+    // usenavigate
+    const navigate = useNavigate()
+
 
     const productHandler=(e)=>{
         e.preventDefault()
@@ -15,21 +21,51 @@ const SellerDashBord = () => {
         const phone = common.phone.value
         const year = common.year.value
         const description = common.description.value
+        const image = common.image.files[0]
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=9b886ea0069808da69e30cf31f29ca72`;
+        fetch(url,{
+            method:'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(image => {
+            if(image.success){
+                const product = {
+                    productname,
+                    location,
+                    category,
+                    conation,
+                    resalePrice,
+                    originalPrice,
+                    phone,
+                    year,
+                    description,
+                    image:image.data.display_url,
+                    UserName: user.displayName,
+                    email: user.email,
+                }
+                // post data
+                fetch(`http://localhost:5000/addProduct`,{
+                    method:'POST',
+                    headers:{
 
-        const product = {
-            productname,
-            location,
-            category,
-            conation,
-            resalePrice,
-            originalPrice,
-            phone,
-            year,
-            description,
+                        'content-type': 'application/json',
+                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body:JSON.stringify(product)
+                })
+                .then(res=> res.json())
+                .then(data=>{
+                    console.log(data);
+                    navigate('/')
+                } )
+            }
+        })
 
-        }
 
-        console.log(product);
+   
     }
 
    
@@ -71,6 +107,11 @@ const SellerDashBord = () => {
                                         <option value="Medium">Medium</option>
                                         <option value="Bad">Bad</option>
                                     </select>
+                                </div>
+                                <div className="form-group clearfix">
+                                    <label htmlFor="">Image</label> <br />
+                                    <input type="file" name='image' />
+                                    
                                 </div>
                             </div>
                         </div>
