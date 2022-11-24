@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
 import Main from "../Main/Main";
 import Carlist from "../Page/CarList/Carlist";
 import Error from "../Page/Error/Error";
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 path: '/carlist',
                 element: <Carlist></Carlist>
+            },
+            {
+                path: '/SellerDashBord',
+                element: <SellerDashBord></SellerDashBord>
             },
             {
                 path: '/singup',

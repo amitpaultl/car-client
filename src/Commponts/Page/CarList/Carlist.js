@@ -6,7 +6,7 @@ const Carlist = () => {
             <div className="featured-title">
                 <div className="main-title">
                     <h1>Featured <span>Cars</span></h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                    <p>Featured Cars adipisicing elit, sed do eiusmod</p>
                 </div>
             </div>
             <div className="featured-area">
