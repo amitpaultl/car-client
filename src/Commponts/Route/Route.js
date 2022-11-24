@@ -35,5 +35,10 @@ export const router = createBrowserRouter([
             },
             
         ]
-    }
+    },
+    {
+        path: '/SellerDashBord',
+        element: <SellerDashBord></SellerDashBord>,
+        
+    },
 ])
