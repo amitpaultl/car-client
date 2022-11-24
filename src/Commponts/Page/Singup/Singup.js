@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import './singup.css'
 import google from '../../assert/image/Group 573.png'
 import { AuthContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Singup = () => {
     // useContext
-    const {createUser,updateUserProfile,verifyEmail,signInWithGoogle,} = useContext(AuthContext);
+    const {createUser,updateUserProfile,signInWithGoogle,setLoading,loading} = useContext(AuthContext);
     // check box
     const [check ,setCheck] = useState(false)
     // handler form
@@ -17,20 +18,48 @@ const Singup = () => {
         const email = common.email.value
         const password = common.password.value
         const checkBox = check
-
+        
         createUser(email,password)
         .then((userCredential) => {
             // Signed in 
+            
             const user = userCredential.user;
-            console.log(user);
-            // ...
+            updateUserProfile(name)
+            .then(() => {
+                toast.success('Sign up success')
+                console.log(user);
+                setLoading(false)
+              }).catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                setLoading(false)
+              });
+        
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
+            toast.error(errorMessage)
+            setLoading(false)
             // ..
           });
         
+    }
+
+    // google sign up
+    const googleHandel =()=>{
+        
+        signInWithGoogle()
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+            toast.success('Sign up success')
+            setLoading(false);
+          }).catch((error) => {
+            const errorMessage = error.message;
+            toast.error(errorMessage)
+            setLoading(false);
+          });
+
     }
     return (
         <div className='login-section mx-auto'>
@@ -45,10 +74,10 @@ const Singup = () => {
                         <input name="name" type="text" className="form-control" placeholder="Name Address" aria-label="Name" />
                     </div>
                     <div className="form-group clearfix">
-                        <input name="email" type="email" className="form-control" placeholder="Email Address" aria-label="Email Address" />
+                        <input required name="email" type="email" className="form-control" placeholder="Email Address" aria-label="Email Address" />
                     </div>
                     <div className="form-group clearfix">
-                        <input name="password" type="password" className="form-control" placeholder="Password" aria-label="Password" />
+                        <input required name="password" type="password" className="form-control" placeholder="Password" aria-label="Password" />
                     </div>
                     <div className="form-group checkbox clearfix">
                         <div className="form-check checkbox-theme float-start">
@@ -60,7 +89,13 @@ const Singup = () => {
 
                     </div>
                     <div className="form-group clearfix">
-                        <button type="submit" className="btn btn-lg btn-4 btn-primary">Signup</button>
+                        <button type="submit" className="btn btn-lg btn-4 btn-primary ">
+                        {
+                            loading ?   <div className="spinner-grow loadingLogin" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </div> :'Signup' 
+                        }    
+                        </button>
                     </div>
                     <div className="extra-login clearfix">
                         <span>Or Signup With</span>
@@ -68,7 +103,7 @@ const Singup = () => {
                 </form>
                 <div className="clearfix"></div>
                 <div className="social-list">
-                    <button className="google-bg">
+                    <button className="google-bg" onClick={googleHandel}>
                         <img src={google} alt="" />
                         <span className='google-login'>Continue with Google</span>
                     </button>

@@ -1,17 +1,9 @@
-.nave-pd {
-    box-shadow: 0 0 5px rgb(0 0 0 / 10%);
-    padding: 10px 0;
-    position: sticky;
-}
-img.logo {
-    width: 60px;
-    border-radius: 5px;
-}
 
-.nave-menu a {
-    font-size: 16px;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    margin: 0 10px;
+
+.login-Button :hover a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+.login-Button a {
+    text-decoration: none !important;
 }

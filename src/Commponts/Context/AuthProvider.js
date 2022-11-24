@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
+  signInWithRedirect
 } from 'firebase/auth'
 import app from '../Firebas/Firebas.config'
 
@@ -44,11 +45,11 @@ const AuthProvider = ({ children }) => {
     return sendEmailVerification(auth.currentUser)
   }
 
-  // 4. Google Signin
+ // 4. Google Signin
   const signInWithGoogle = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
-  }
+  } 
 
   // 5. Logout
   const logout = () => {
@@ -67,6 +68,12 @@ const AuthProvider = ({ children }) => {
   const resetPassword = email => {
     setLoading(true)
     return sendPasswordResetEmail(auth, email)
+  }
+
+   // 8. Google Signin
+   const signInGoogle = () => {
+    setLoading(true)
+    return signInWithRedirect(auth, googleProvider)
   }
 
   useEffect(() => {
@@ -93,6 +100,7 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     loading,
     setLoading,
+    signInGoogle
   }
 
   return (

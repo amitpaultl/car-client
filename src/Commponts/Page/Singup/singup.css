@@ -166,3 +166,8 @@ button.google-bg {
 span.google-login {
     margin-left: 20px;
 }
+
+.loadingLogin {
+    width: 20px!important;
+    height: 20px!important;
+}
