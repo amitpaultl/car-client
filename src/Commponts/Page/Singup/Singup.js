@@ -22,7 +22,7 @@ const Singup = () => {
         const userAdd = {
             name,
             email,
-            role:checkBox
+            role: checkBox
         }
 
 
@@ -31,27 +31,27 @@ const Singup = () => {
                 // Signed in 
                 updateUserProfile(name)
                     .then(() => {
-                        
+
 
                         // fetch user post
                         fetch('http://localhost:5000/user', {
-                            method: 'POST',
+                            method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
                             },
                             body: JSON.stringify(userAdd)
                         })
-                        .then(res => res.json())
-                        .then(data =>{
-                            if(data.success){
-                                toast.success('Successfully sign up') 
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.success) {
+                                    toast.success('Successfully sign up')
+                                    setLoading(false)
+                                }
+                            })
+                            .catch(error => {
+                                toast.error(error.message)
                                 setLoading(false)
-                            }
-                        })
-                        .catch(error =>{
-                            toast.error(error.message)
-                            setLoading(false)
-                        })
+                            })
 
                     }).catch((error) => {
                         const errorMessage = error.message;
@@ -75,9 +75,31 @@ const Singup = () => {
         signInWithGoogle()
             .then((result) => {
                 const user = result.user;
-                console.log(user);
-                toast.success('Sign up success')
-                setLoading(false);
+                const userAdd = {
+                    name: user.displayName,
+                    email: user.email,
+                    role: false
+                }
+                // fetch user post
+                fetch('http://localhost:5000/user', {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userAdd)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            toast.success('Successfully sign up')
+                            setLoading(false)
+                        }
+                    })
+                    .catch(error => {
+                        toast.error(error.message)
+                        setLoading(false)
+                    })
+
             }).catch((error) => {
                 const errorMessage = error.message;
                 toast.error(errorMessage)
