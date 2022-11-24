@@ -32,6 +32,9 @@ const SellerDashBord = () => {
         console.log(product);
     }
 
+    const prot = process.env.prot
+    
+
     return (
         <div className='SellerDashBord'>
             <div className="featured-title">

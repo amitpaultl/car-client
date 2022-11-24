@@ -7,58 +7,82 @@ import toast from 'react-hot-toast';
 
 const Singup = () => {
     // useContext
-    const {createUser,updateUserProfile,signInWithGoogle,setLoading,loading} = useContext(AuthContext);
+    const { createUser, updateUserProfile, signInWithGoogle, setLoading, loading } = useContext(AuthContext);
     // check box
-    const [check ,setCheck] = useState(false)
+    const [check, setCheck] = useState(false)
     // handler form
-    const handlerForm = e =>{
+    const handlerForm = e => {
         e.preventDefault()
         const common = e.target;
         const name = common.name.value
         const email = common.email.value
         const password = common.password.value
         const checkBox = check
-        
-        createUser(email,password)
-        .then((userCredential) => {
-            // Signed in 
-            
-            const user = userCredential.user;
-            updateUserProfile(name)
-            .then(() => {
-                toast.success('Sign up success')
-                console.log(user);
-                setLoading(false)
-              }).catch((error) => {
+
+        const userAdd = {
+            name,
+            email,
+            role:checkBox
+        }
+
+
+        createUser(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                updateUserProfile(name)
+                    .then(() => {
+                        
+
+                        // fetch user post
+                        fetch('http://localhost:5000/user', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(userAdd)
+                        })
+                        .then(res => res.json())
+                        .then(data =>{
+                            if(data.success){
+                                toast.success('Successfully sign up') 
+                                setLoading(false)
+                            }
+                        })
+                        .catch(error =>{
+                            toast.error(error.message)
+                            setLoading(false)
+                        })
+
+                    }).catch((error) => {
+                        const errorMessage = error.message;
+                        toast.error(errorMessage)
+                        setLoading(false)
+                    });
+
+            })
+            .catch((error) => {
                 const errorMessage = error.message;
                 toast.error(errorMessage)
                 setLoading(false)
-              });
-        
-          })
-          .catch((error) => {
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-            setLoading(false)
-            // ..
-          });
-        
+                // ..
+            });
+
     }
 
     // google sign up
-    const googleHandel =()=>{
-        
+    const googleHandel = () => {
+
         signInWithGoogle()
-        .then((result) => {
-            const user = result.user;
-            console.log(user);
-            toast.success('Sign up success')
-            setLoading(false);
-          }).catch((error) => {
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-            setLoading(false);
-          });
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                toast.success('Sign up success')
+                setLoading(false);
+            }).catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                setLoading(false);
+            });
 
     }
     return (
@@ -81,7 +105,7 @@ const Singup = () => {
                     </div>
                     <div className="form-group checkbox clearfix">
                         <div className="form-check checkbox-theme float-start">
-                            <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={()=>setCheck(!check)}  />
+                            <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={() => setCheck(!check)} />
                             <label className="form-check-label" htmlFor="rememberMe">
                                 Are You Seller Account Please Check It
                             </label>
@@ -90,11 +114,11 @@ const Singup = () => {
                     </div>
                     <div className="form-group clearfix">
                         <button type="submit" className="btn btn-lg btn-4 btn-primary ">
-                        {
-                            loading ?   <div className="spinner-grow loadingLogin" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                          </div> :'Signup' 
-                        }    
+                            {
+                                loading ? <div className="spinner-grow loadingLogin" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div> : 'Signup'
+                            }
                         </button>
                     </div>
                     <div className="extra-login clearfix">
@@ -108,7 +132,7 @@ const Singup = () => {
                         <span className='google-login'>Continue with Google</span>
                     </button>
                 </div>
-                <p>Don't have an account? <Link to={'/login'}  className="thembo"> Login here</Link></p>
+                <p>Don't have an account? <Link to={'/login'} className="thembo"> Login here</Link></p>
             </div>
         </div>
     );
