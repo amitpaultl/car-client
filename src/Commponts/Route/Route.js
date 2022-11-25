@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainDasbord from "../DashBord/MainDasbord/MainDasbord";
 import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
+import SellerProduct from "../DashBord/SellerProduct/SellerProduct";
 import Main from "../Main/Main";
 import Carlist from "../Page/CarList/Carlist";
+import Category from "../Page/Category/Category";
 import Error from "../Page/Error/Error";
 import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
 import Singup from "../Page/Singup/Singup";
+import PravectRoute from "./PravectRoute";
 
 export const router = createBrowserRouter([
     {
@@ -22,8 +26,9 @@ export const router = createBrowserRouter([
                 element: <Carlist></Carlist>
             },
             {
-                path: '/SellerDashBord',
-                element: <SellerDashBord></SellerDashBord>
+                path: '/category/:id',
+                element: <Category></Category>,
+                loader: ({params})=> fetch(`http://localhost:5000/addProduct/${params.id}`)
             },
             {
                 path: '/singup',
@@ -37,8 +42,18 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: '/SellerDashBord',
-        element: <SellerDashBord></SellerDashBord>,
+        path: '/dashboard',
+        element: <PravectRoute><MainDasbord></MainDasbord></PravectRoute>,
+        children:[
+            {
+                path:'/dashboard/',
+                element:<SellerDashBord></SellerDashBord>
+            },
+            {
+                path:'/dashboard/SellerProduct',
+                element:<SellerProduct></SellerProduct>
+            },
+        ]
         
     },
 ])

@@ -7,7 +7,7 @@ const SellerDashBord = () => {
     const { user } = useContext(AuthContext);
     // usenavigate
     const navigate = useNavigate()
-
+    const data = new Date().toJSON().slice(0, 10);
 
     const productHandler=(e)=>{
         e.preventDefault()
@@ -45,6 +45,7 @@ const SellerDashBord = () => {
                     image:image.data.display_url,
                     UserName: user.displayName,
                     email: user.email,
+                    data
                 }
                 // post data
                 fetch(`http://localhost:5000/addProduct`,{

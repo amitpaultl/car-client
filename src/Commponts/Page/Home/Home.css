@@ -1,3 +1,25 @@
+/* category area */
+.category-area{
+    padding: 50px 0;
+}
+
+.category-text{
+background-position: center;
+background-repeat: no-repeat;
+text-align: center;
+background-color: #391717b0;
+border-radius: 5px;
+}
+
+.category-text a{
+    text-decoration:none;
+}
+
+.category-text h2{
+    color: #fff;
+    padding: 20px 0;
+}
+
 /* banner-area  */
 .banner-area{
     background-image: url('https://storage.googleapis.com/theme-vessel-items/checking-sites/carhouse-html/HTML/main/img/car-3.jpg');

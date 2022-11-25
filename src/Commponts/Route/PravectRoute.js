@@ -1,17 +1,17 @@
 import React, { Children, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthProvider } from '../../Context/AuthContext/AuthContext';
+import { AuthContext } from '../Context/AuthProvider';
 
 const PravectRoute = ({ children }) => {
     // usecontext
-    const { user, loading } = useContext(AuthProvider)
+    const { user, loading } = useContext(AuthContext)
     // location
     const location = useLocation()
     // loding
     if (loading) {
         return (
-            <div class="spinner-grow" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
         )
     }
