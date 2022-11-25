@@ -1,0 +1,104 @@
+.singleProduct{
+    font-family: 'Roboto', sans-serif;
+    padding: 100px 0;
+}
+
+.car-details-section {
+    background: aliceblue;
+    padding: 32px 29px;
+}
+
+.heading-car {
+    margin-bottom: 20px;
+    
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.heading-car h3 {
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.heading-car h3 {
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.heading-car h3 span {
+    color: #f0151f;
+}
+
+.details-img img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.heading-2 {
+    margin: 0 0 20px;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+p {
+    font-size: 15px;
+    line-height: 26px;
+    font-weight: 500;
+    color: #535353;
+}
+
+.sidebar-right {
+    background: aliceblue;
+}
+
+.widget {
+    padding: 35px;
+    border-bottom: solid 1px #efefef;
+}
+
+.sidebar-title {
+    font-size: 22px;
+    position: relative;
+    margin: 0 0 20px;
+    font-weight: 400;
+}
+
+.advanced-search ul {
+    padding: 0;
+    margin: 0;
+}
+
+.advanced-search ul li {
+    list-style: none;
+    padding: 5px 0;
+    color: #787878;
+    font-size: 15px;
+    line-height: 30px!important;
+    border-bottom: 1px dotted #DDD;
+    text-align: right;
+    font-weight: 500;
+}
+.advanced-search ul span {
+    font-weight: 500;
+    float: left;
+    color: #474646;
+}
+button.buyNow {
+    width: 100%;
+    padding: 11px 0;
+    margin-top: 20px;
+    background: #f0151f;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+}
+/* modal */
+
+.modal-body input {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 6px 14px;
+}

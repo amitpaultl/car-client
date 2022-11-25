@@ -10,6 +10,7 @@ import Category from "../Page/Category/Category";
 import Error from "../Page/Error/Error";
 import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
+import SingleProduct from "../Page/SingleProduct/SingleProduct";
 import Singup from "../Page/Singup/Singup";
 import PravectRoute from "./PravectRoute";
 
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: '/carlist',
                 element: <Carlist></Carlist>
+            },
+            {
+                path: '/singleProduct/:id',
+                element: <SingleProduct></SingleProduct>
             },
             {
                 path: '/category/:id',
