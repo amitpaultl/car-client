@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import Loding from '../../Loading/Loding';
 
 const User = () => {
 
        // data load singe product 
-       const { data: products, isLoading } = useQuery({
+       const { data: products, refetch, isLoading } = useQuery({
         queryKey: ['addProduct'],
         queryFn: async () => {
             try {
@@ -34,8 +35,20 @@ const User = () => {
         
     }
 
-    const deleteProduct=()=>{
+    // delete
+    const deleteProduct = (product) => {
+        fetch(`http://localhost:5000/booking/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(data.message)
 
+                refetch()
+            })
     }
 
     return (
