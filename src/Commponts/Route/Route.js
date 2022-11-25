@@ -4,6 +4,7 @@ import AllSeller from "../DashBord/Admin/Allseller/AllSeller";
 import MainDasbord from "../DashBord/MainDasbord/MainDasbord";
 import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
 import SellerProduct from "../DashBord/SellerProduct/SellerProduct";
+import User from "../DashBord/User/User";
 import Main from "../Main/Main";
 import Carlist from "../Page/CarList/Carlist";
 import Category from "../Page/Category/Category";
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/allBuyer',
                 element:<AllBuyer></AllBuyer>
+            },
+            {
+                path:'/dashboard/user',
+                element:<User></User>
             },
         ]
         

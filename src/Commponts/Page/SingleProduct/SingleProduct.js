@@ -59,7 +59,8 @@ const SingleProduct = () => {
             location: location,
             price: resalePrice,
             image: image,
-            id: _id
+            id: _id,
+            productName:productname
         }
 
         // fetch user post
