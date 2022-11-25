@@ -30,18 +30,18 @@ const SellerProduct = () => {
 
     // advertiseAdd 
     const advertiseAdd = (product) => {
-        axios.post(`http://localhost:5000/addProduct/${product._id}`, {
-            publish: true
-        }
-
-        )
-            .then(res => {
-                console.log(res);
-            })
-            .catch(data => {
-                console.log(data);
-            });
-        console.log(product._id);
+        fetch(`http://localhost:5000/addProduct/${product._id}`,{
+            method : 'PUT',
+            headers: {
+                // authorization : `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            toast.success(data.message)
+            refetch()
+        })
     }
 
     // delete
