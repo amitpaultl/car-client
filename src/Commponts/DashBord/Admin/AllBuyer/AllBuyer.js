@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loding from '../../../Loading/Loding';
 
-const AllSeller = () => {
+const AllBuyer = () => {
 
 
 
@@ -31,7 +31,7 @@ const AllSeller = () => {
         return <Loding></Loding>
     }
 
-    const sellerUser =  user?.data.filter(userSeller => userSeller.role)
+    const sellerUser =  user?.data.filter(userSeller => !userSeller.role )
 
     console.log(sellerUser);
 
@@ -39,7 +39,7 @@ const AllSeller = () => {
         <div className='sellProduct'>
             <div className="featured-title">
                 <div className="main-title">
-                    <h1>All Featured <span>Seller </span></h1>
+                    <h1>All Featured <span>Buyer </span></h1>
                     <p>Consectetur adipisicing elit, sed do eiusmod</p>
                 </div>
             </div>
@@ -73,4 +73,4 @@ const AllSeller = () => {
     );
 };
 
-export default AllSeller;
+export default AllBuyer;
