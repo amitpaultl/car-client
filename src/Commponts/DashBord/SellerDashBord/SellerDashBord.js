@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import './SellerDashBord.css'
@@ -59,7 +60,7 @@ const SellerDashBord = () => {
                 })
                 .then(res=> res.json())
                 .then(data=>{
-                    console.log(data);
+                    toast.success(data.message)
                     navigate('/')
                 } )
             }

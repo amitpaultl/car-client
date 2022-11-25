@@ -12,7 +12,7 @@ const MainDasbord = () => {
                         <div className="menu-dasbord">
                             <Link to={'/dashboard'}>ADD Product</Link>
                             <Link to={'/dashboard/SellerProduct'}>Show Product</Link>
-                            <Link>Sell product</Link>
+                            <Link to={'/dashboard/allSeller'}>All Seller</Link>
                         </div>
                     </div>
                     <div className="col-md-10">

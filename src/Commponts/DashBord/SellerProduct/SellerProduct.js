@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
+import Loding from '../../Loading/Loding';
 import './SellerProduct.css'
 
 
@@ -12,7 +14,7 @@ const SellerProduct = () => {
 
     // react query data fatch
     const url = `http://localhost:5000/addProduct?email=${user?.email}`;
-    const { data: addProduct = [], refetch } = useQuery({
+    const { data: addProduct = [], refetch ,isLoading} = useQuery({
         queryKey: ['addProduct', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -26,17 +28,12 @@ const SellerProduct = () => {
         }
     })
 
-// advertiseAdd 
+    // advertiseAdd 
     const advertiseAdd = (product) => {
         axios.post(`http://localhost:5000/addProduct/${product._id}`, {
-                publish: true
-            }
-            ,
-            {
-                headers: {
-                    "Content-type": "application/json"
-                },
-            }
+            publish: true
+        }
+
         )
             .then(res => {
                 console.log(res);
@@ -48,22 +45,34 @@ const SellerProduct = () => {
     }
 
     // delete
-    const deleteProduct = (product)=>{
-        fetch(`http://localhost:5000/addProduct/${product._id}`,{
-            method:'DELETE',
-            headers:{
+    const deleteProduct = (product) => {
+        fetch(`http://localhost:5000/addProduct/${product._id}`, {
+            method: 'DELETE',
+            headers: {
                 // authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data);
-            refetch()
-        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(data.message)
+
+                refetch()
+            })
+    }
+
+    if (isLoading) {
+        return <Loding></Loding>
     }
 
     return (
-        <div>
+        <div className='sellProduct'>
+            <div className="featured-title">
+                <div className="main-title">
+                    <h1>All Product <span>Your </span></h1>
+                    <p>Consectetur adipisicing elit, sed do eiusmod</p>
+                </div>
+            </div>
+
             <table className="table">
                 <thead>
                     <tr>
@@ -84,7 +93,7 @@ const SellerProduct = () => {
                             <td><strong>{product?.productname}</strong> </td>
                             <td>{product?.paid ? <p className="text-secondary">Sold</p> : <p className="text-danger">Sales</p>}</td>
                             <td>{product?.publish ? ' ' : <button onClick={() => advertiseAdd(product)} type="button" className="btn btn-success">Advertise</button>}</td>
-                            <td><button onClick={()=>deleteProduct(product)} type="button" className="btn btn-danger">Delete</button></td>
+                            <td><button onClick={() => deleteProduct(product)} type="button" className="btn btn-danger">Delete</button></td>
                         </tr>)
                     }
 
