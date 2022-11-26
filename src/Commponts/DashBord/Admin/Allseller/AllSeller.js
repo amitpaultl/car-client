@@ -1,13 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
+import toast from 'react-hot-toast';
 import Loding from '../../../Loading/Loding';
 
 const AllSeller = () => {
 
 
 
-    
-    const { data: user, isLoading } = useQuery({
+
+    const { data: user, isLoading,refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             try {
@@ -25,16 +27,28 @@ const AllSeller = () => {
         }
     })
 
-  
+
     // loading
     if (isLoading) {
         return <Loding></Loding>
     }
 
-    const sellerUser =  user?.data.filter(userSeller => userSeller.role)
+    const sellerUser = user?.data.filter(userSeller => userSeller.role)
 
-    console.log(sellerUser);
-
+    // verifyHandaler
+    const verifyHandaler = (email) => {
+        axios(`http://localhost:5000/user/${email}`, {
+            method: 'PUT',
+            headers: {
+                // authorization : `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(data => {
+                console.log(data);
+                toast.success('User verify')
+                refetch()
+            })
+    }
     return (
         <div className='sellProduct'>
             <div className="featured-title">
@@ -44,30 +58,38 @@ const AllSeller = () => {
                 </div>
             </div>
             <div >
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">NO</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    
-                    
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NO</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Verify</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
                         {
-                            sellerUser.map((userSeler,i) =>   <tr key={i} >                      
-                                <td>{i +1}</td>
+                            sellerUser.map((userSeler, i) => <tr key={i} >
+                                <td>{i + 1}</td>
                                 <td><strong>{userSeler.name}</strong></td>
                                 <td>{userSeler.email}</td>
+
+                                <td>
+                                    {
+                                        userSeler?.verify ? <p className='text-success'> Verify Confirm </p> : <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
+                                    }
+                                    
+                                </td>
                             </tr>)
                         }
 
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     );

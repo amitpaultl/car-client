@@ -33,7 +33,7 @@ const AllBuyer = () => {
 
     const sellerUser =  user?.data.filter(userSeller => !userSeller.role )
 
-    console.log(sellerUser);
+ 
 
     return (
         <div className='sellProduct'>

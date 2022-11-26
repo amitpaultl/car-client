@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link,  } from 'react-router-dom';
 import Loding from '../../Loading/Loding';
 
 const User = () => {
-
+        // 
        // data load singe product 
        const { data: products, refetch, isLoading } = useQuery({
         queryKey: ['addProduct'],
@@ -28,11 +29,6 @@ const User = () => {
     // loading
     if (isLoading) {
         return <Loding></Loding>
-    }
-
-    // pamentHandeler
-    const paymentHandler=()=>{
-        
     }
 
     // delete
@@ -77,7 +73,7 @@ const User = () => {
                             <th scope="row">{i + 1}</th>
                             <td><img className='addProductimg' src={product?.image} alt="" /></td>
                             <td><strong>{product?.productName}</strong> </td>
-                            <td>{product?.paid ? 'Paid ' : <button onClick={() => paymentHandler(product)} type="button" className="btn btn-success">PAY</button>}</td>
+                            <td>{product?.paid ? <p className='text-success'>Paid </p>  : <button type="button" className="btn btn-success"><Link to={`/dashboard/payment/${product._id}`} className='text-light'>PAY</Link></button>}</td>
                             
                             <td><button onClick={() => deleteProduct(product)} type="button" className="btn btn-danger">Delete</button></td>
                         </tr>)
