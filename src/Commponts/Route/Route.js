@@ -7,6 +7,7 @@ import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
 import SellerProduct from "../DashBord/SellerProduct/SellerProduct";
 import User from "../DashBord/User/User";
 import Main from "../Main/Main";
+import Blog from "../Page/Bolg/Blog";
 import Carlist from "../Page/CarList/Carlist";
 import Category from "../Page/Category/Category";
 import Error from "../Page/Error/Error";
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <Category></Category>,
                 loader: ({params})=> fetch(`http://localhost:5000/addProduct/${params.id}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/singup',

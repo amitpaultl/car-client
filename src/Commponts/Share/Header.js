@@ -37,22 +37,10 @@ function NavScrollExample() {
             navbarScroll
           >
             <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink  to={'/carlist'}>Carlist</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink  to={'/blog'}>Blog</NavLink></Navbar.Brand>
 
 
-            <NavDropdown className='category-menu' title="Category" id="navbarScrollingDropdown">
-
-              <li>
-                <NavLink to={'/login'}>TOYOTA</NavLink>
-              </li>
-              <li>
-                <NavLink to={'/login'}>BMW</NavLink>
-              </li>
-              <li>
-                <NavLink to={'/login'}>BENTLEY</NavLink>
-              </li>
-
-            </NavDropdown>
+         
 
           </Nav>
           <div className="d-flex">
