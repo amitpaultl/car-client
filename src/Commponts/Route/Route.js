@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import AllBuyer from "../DashBord/Admin/AllBuyer/AllBuyer";
 import AllSeller from "../DashBord/Admin/Allseller/AllSeller";
 import MainDasbord from "../DashBord/MainDasbord/MainDasbord";
+import PayMent from "../DashBord/Payment/PayMent";
 import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
 import SellerProduct from "../DashBord/SellerProduct/SellerProduct";
-import Payment from "../DashBord/User/Payment";
 import User from "../DashBord/User/User";
 import Main from "../Main/Main";
 import Carlist from "../Page/CarList/Carlist";
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/payment/:id',
-                element:<Payment></Payment>
+                element:<PayMent></PayMent>
             },
         ]
         

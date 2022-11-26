@@ -1,18 +1,24 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CheckoutForm from './CheckoutForm';
+const stripePromise = loadStripe('pk_test_51M64lzDCOyG8s9oVCcXzWGVVx9jzMEDh891ayRYXz5WnZjBRwMeYK7LCCnSUS0JkRdgzYJt2WZ9RfhPsLzYixJGr00T2jIoXXZ');
+// const stripePromise = loadStripe(process.env.REACT_APP_Stripe_key);
 
-const Payment = () => {
-    const {id} = useParams()
-    console.log(id);
+const PayMent = () => {
+    const { id } = useParams()
+
+
     const [product, setProduct] = useState({})
 
-    useEffect(()=>{
+    useEffect(() => {
         axios(`http://localhost:5000/booking/${id}`)
-        .then(res => {
-            setProduct(res.data)
-        })
-    },[])
+            .then(res => {
+                setProduct(res.data)
+            })
+    }, [id])
     console.log(product);
 
     // 
@@ -43,19 +49,15 @@ const Payment = () => {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="paymentInfo">
-                            <h2>Pay System </h2>
-                            <div className="user-info">
-                                <div className="form-group clearfix">
-                                    <input type="text" className="form-control" />
-                                </div>
-                                <div className="form-group clearfix">
-                                    <input type="text" className="form-control" />
-                                </div>
-                                <div className="form-group clearfix">
-                                    <input type="text" className="form-control" />
-                                </div>
-                                <button type="button" className="btn btn-success">PAYMENT</button>
+                        <div className="main-title">
+                            <h1>Pay $<span>{product?.price}</span> </h1>
+                            <div className="card-info mt-5 text-start">
+                                
+                                <Elements stripe={stripePromise}>
+                                    <CheckoutForm
+                                    product={product}
+                                    />
+                                </Elements>
                             </div>
                         </div>
                     </div>
@@ -66,4 +68,4 @@ const Payment = () => {
     );
 };
 
-export default Payment;
+export default PayMent;
