@@ -38,6 +38,7 @@ function NavScrollExample() {
           >
             <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
             <Navbar.Brand><NavLink  to={'/blog'}>Blog</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink  to={'/car'}>Car List</NavLink></Navbar.Brand>
 
 
          

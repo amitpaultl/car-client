@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { Link,  } from 'react-router-dom';
@@ -47,6 +48,26 @@ const User = () => {
             })
     }
 
+    //  report 
+    const reportProduct =(product)=>{
+        const report = product.id
+            
+        
+        fetch(`http://localhost:5000/report`,{
+            method:'PUT',
+            headers:{
+
+                'content-type': 'application/json',
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body:JSON.stringify({report})
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            toast.success(data.message)
+        } )
+    }
+
 
     
 if (products?.data?.length === 0) {
@@ -77,7 +98,7 @@ if (products?.data?.length === 0) {
                         <th scope="col">Image</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Payment</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Delete/Report</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,7 +110,12 @@ if (products?.data?.length === 0) {
                             <td><strong>{product?.productName}</strong> </td>
                             <td>{product?.paid ? <p className='text-success'>Paid </p>  : <button type="button" className="btn btn-success"><Link to={`/dashboard/payment/${product._id}`} className='text-light'>PAY</Link></button>}</td>
                             
-                            <td><button onClick={() => deleteProduct(product)} type="button" className="btn btn-danger">Delete</button></td>
+                            <td>
+                                {
+                                    product?.paid ? <button onClick={() => reportProduct(product)} type="button" className="btn btn-danger">Report</button> : <button onClick={() => deleteProduct(product)} type="button" className="btn btn-danger">Delete</button>
+                                }
+                                
+                            </td>
                         </tr>)
                     }
 

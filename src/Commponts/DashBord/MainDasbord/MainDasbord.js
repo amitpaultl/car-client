@@ -14,6 +14,7 @@ const MainDasbord = () => {
                             <Link to={'/dashboard/SellerProduct'}>Show Product</Link>
                             <Link to={'/dashboard/allSeller'}>All Seller</Link>
                             <Link to={'/dashboard/allBuyer'}>All Buyer</Link>
+                            <Link to={'/dashboard/report'}>Report Product</Link>
                             <Link to={'/dashboard/user'}>Booking</Link>
                         </div>
                     </div>

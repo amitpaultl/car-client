@@ -45,7 +45,11 @@ if (isLoading) {
 // filter publish product
 
 
-const publish = products.data.filter(product => product.publish)
+const unreverse = products?.data?.filter(product => product.publish)
+
+const publish = unreverse?.reverse()
+
+console.log(publish);
 
 if (publish.length === 0) {
     return (

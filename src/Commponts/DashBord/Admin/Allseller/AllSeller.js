@@ -33,7 +33,7 @@ const AllSeller = () => {
         return <Loding></Loding>
     }
 
-    const sellerUser = user?.data.filter(userSeller => userSeller.role)
+    const sellerUser = user?.data?.filter(userSeller => userSeller.role)
 
     // verifyHandaler
     const verifyHandaler = (email) => {
@@ -87,14 +87,17 @@ if (sellerUser.length === 0) {
                         {
                             sellerUser.map((userSeler, i) => <tr key={i} >
                                 <td>{i + 1}</td>
-                                <td><strong>{userSeler.name}</strong></td>
-                                <td>{userSeler.email}</td>
+                                <td><strong>{userSeler?.name}</strong></td>
+                                <td>{userSeler?.email}</td>
 
                                 <td>
-                                    {
+                                    {/* {
                                         userSeler?.verify ? <p className='text-success'> Verify Confirm </p> : <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
-                                    }
+                                    } */}
                                     
+
+                                    <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
+
                                 </td>
                             </tr>)
                         }

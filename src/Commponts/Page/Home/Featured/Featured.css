@@ -50,6 +50,7 @@
     width: 100%;
     transform: scale(1);
     transition: all 500ms ease;
+    height: 280px;
 }
 
 .car-box-3 .photo>a {

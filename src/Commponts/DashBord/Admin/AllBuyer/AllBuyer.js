@@ -31,7 +31,7 @@ const AllBuyer = () => {
         return <Loding></Loding>
     }
 
-    const sellerUser =  user?.data.filter(userSeller => !userSeller.role )
+    const sellerUser =  user?.data?.filter(userSeller => !userSeller.role )
 
         
 if (sellerUser.length === 0) {
@@ -71,8 +71,8 @@ if (sellerUser.length === 0) {
                         {
                             sellerUser.map((userSeler,i) =>   <tr key={i} >                      
                                 <td>{i +1}</td>
-                                <td><strong>{userSeler.name}</strong></td>
-                                <td>{userSeler.email}</td>
+                                <td><strong>{userSeler?.name}</strong></td>
+                                <td>{userSeler?.email}</td>
                             </tr>)
                         }
 

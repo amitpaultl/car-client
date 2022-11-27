@@ -14,12 +14,14 @@ const PayMent = () => {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        axios(`http://localhost:5000/booking/${id}`)
-            .then(res => {
-                setProduct(res.data)
-            })
+        if (id) {
+
+            axios(`http://localhost:5000/booking/${id}`)
+                .then(res => {
+                    setProduct(res.data)
+                })
+        }
     }, [id])
-    console.log(product);
 
     // 
 
@@ -52,10 +54,10 @@ const PayMent = () => {
                         <div className="main-title">
                             <h1>Pay $<span>{product?.price}</span> </h1>
                             <div className="card-info mt-5 text-start">
-                                
+
                                 <Elements stripe={stripePromise}>
                                     <CheckoutForm
-                                    product={product}
+                                        product={product}
                                     />
                                 </Elements>
                             </div>
