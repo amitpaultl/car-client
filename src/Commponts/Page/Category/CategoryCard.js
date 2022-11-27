@@ -1,21 +1,18 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../Context/AuthProvider';
+import React from 'react';
 
-const FeaturedCard = ({ publics }) => {
+const CategoryCard = ({cars}) => {
+    console.log(cars);
+    const { _id,UserName,image ,location,originalPrice,productname,resalePrice,data} = cars
 
-    const { user } = useContext(AuthContext)
-
-    const { _id, UserName, image, location, originalPrice, productname, resalePrice, data } = publics
     return (
         <div className="col-md-4">
             <div className="car-box-3">
                 <div className="photo-thumbnail">
                     <div className="photo">
                         <img className="d-block w-100" src={image} alt="car" />
-                        <Link to={`/singleProduct/${_id}`}>
+                        <link to={`/singleProduct/${_id}`}>
                             <span className="blog-one__plus"></span>
-                        </Link>
+                        </link>
                     </div>
                     <div className="tag">{data}</div>
                     <div className="price-box">
@@ -40,12 +37,9 @@ const FeaturedCard = ({ publics }) => {
                     <ul className="facilities-list  ">
                         <li>{UserName}</li>
                         <li className='variefiey'>
-                            {
-                                user?.verify && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                </svg> 
-                            }
-
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
 
                         </li>
                     </ul>
@@ -55,4 +49,4 @@ const FeaturedCard = ({ publics }) => {
     );
 };
 
-export default FeaturedCard;
+export default CategoryCard;

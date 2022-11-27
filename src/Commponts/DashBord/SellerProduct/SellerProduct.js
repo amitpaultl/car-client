@@ -11,10 +11,10 @@ const SellerProduct = () => {
 
     // use context
     const { user } = useContext(AuthContext);
-
+    console.log(user?.email);
     // react query data fatch
-    const url = `http://localhost:5000/addProduct?email=${user?.email}`;
-    const { data: addProduct = [], refetch ,isLoading} = useQuery({
+    const url = `http://localhost:5000/sellerProduct?email=${user?.email}`;
+    const { data: addProduct = [], refetch, isLoading } = useQuery({
         queryKey: ['addProduct', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -30,18 +30,18 @@ const SellerProduct = () => {
 
     // advertiseAdd 
     const advertiseAdd = (product) => {
-        fetch(`http://localhost:5000/addProduct/${product._id}`,{
-            method : 'PUT',
+        fetch(`http://localhost:5000/addProduct/${product._id}`, {
+            method: 'PUT',
             headers: {
                 // authorization : `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            toast.success(data.message)
-            refetch()
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success(data.message)
+                refetch()
+            })
     }
 
     // delete
@@ -62,6 +62,19 @@ const SellerProduct = () => {
 
     if (isLoading) {
         return <Loding></Loding>
+    }
+
+
+    if (addProduct?.data?.length === 0) {
+        return (
+            <div className="featured-car">
+                <div className="featured-title">
+                    <div className="main-title">
+                        <h1><span className='text-uppercase'>No Product Available</span></h1>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     return (

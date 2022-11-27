@@ -33,6 +33,18 @@ const AllBuyer = () => {
 
     const sellerUser =  user?.data.filter(userSeller => !userSeller.role )
 
+        
+if (sellerUser.length === 0) {
+    return (
+        <div className="featured-car">
+            <div className="featured-title">
+                <div className="main-title">
+                    <h1><span className='text-uppercase'>No Buyer Available</span></h1>
+                </div>
+            </div>
+        </div>
+    )
+}
  
 
     return (
