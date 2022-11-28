@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './singup.css'
 import google from '../../assert/image/Group 573.png'
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Singup = () => {
+    const negator = useNavigate()
     // useContext
     const { createUser, updateUserProfile, signInWithGoogle, setLoading, loading } = useContext(AuthContext);
     // check box
@@ -114,8 +115,9 @@ const Singup = () => {
                 if (data.accessToken) {
                     localStorage.setItem('accessToken', data.accessToken)
                     toast.success('Successfully sign up')
+                    negator('/')
                     setLoading(false)
-                    
+
                 }
             })
     }
@@ -141,19 +143,14 @@ const Singup = () => {
                         <input required name="password" type="password" className="form-control" placeholder="Password" aria-label="Password" />
                     </div>
                     <div className="form-group checkbox clearfix">
-                    <div className="form-check checkbox-theme float-start ">
+                        <div className="form-check checkbox-theme float-start ">
                             <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={() => setCheck(!check)} />
                             <label className="form-check-label" htmlFor="rememberMe">
-                                 Seller Account 
-                            </label>
-                        </div>
-                        <div className="form-check checkbox-theme float-start mx-5">
-                            <input className="form-check-input"   />
-                            <label className="form-check-label" htmlFor="rememberMe">
-                                Buyer Account 
+                                Seller Account
                             </label>
                         </div>
 
+                        <p>Default User Account</p>
                     </div>
                     <div className="form-group clearfix">
                         <button type="submit" className="btn btn-lg btn-4 btn-primary ">

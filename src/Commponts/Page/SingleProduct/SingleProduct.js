@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './SingleProduct.css'
@@ -150,7 +150,11 @@ const SingleProduct = () => {
 
                                 </ul>
                             </div>
-                            <button onClick={handleShow} className='buyNow'>Buy Now</button>
+                            {
+                                user ? <button onClick={handleShow} className='buyNow'>Buy Now</button> : <Link to={'/login'}><button className='buyNow'>Buy Now</button></Link>
+                                
+                            }
+                            
 
                         </div>
 
