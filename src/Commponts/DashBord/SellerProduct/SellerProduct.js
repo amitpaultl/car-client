@@ -13,7 +13,7 @@ const SellerProduct = () => {
     const { user } = useContext(AuthContext);
     console.log(user?.email);
     // react query data fatch
-    const url = `http://localhost:5000/sellerProduct?email=${user?.email}`;
+    const url = `http://localhost:5000/myProduct?email=${user?.email}`;
     const { data: addProduct = [], refetch, isLoading } = useQuery({
         queryKey: ['addProduct', user?.email],
         queryFn: async () => {

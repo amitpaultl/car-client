@@ -37,10 +37,7 @@ const { data: products, isLoading } = useQuery({
 })
 
 
-// loading
-if (isLoading) {
-    return <Loding></Loding>
-}
+
 
 // filter publish product
 
@@ -48,6 +45,14 @@ if (isLoading) {
 const unreverse = products?.data?.filter(product => product.publish)
 
 const publish = unreverse?.reverse()
+
+
+
+
+if (isLoading) {
+    return <Loding></Loding>
+}
+
 
 console.log(publish);
 

@@ -34,7 +34,7 @@ const Category = () => {
         return <Loding></Loding>
     }
 
-    if (user.data.length === 0) {
+    if (user?.data?.length === 0) {
         return (
             <div className="featured-car">
                 <div className="featured-title">

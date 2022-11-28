@@ -15,7 +15,7 @@ function NavScrollExample() {
   const singOut =()=>{
     logout()
     .then(()=>{
-
+      localStorage.clear()
     })
     .catch((error) => {
       const errorMessage = error.message;
@@ -39,6 +39,7 @@ function NavScrollExample() {
             <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
             <Navbar.Brand><NavLink  to={'/blog'}>Blog</NavLink></Navbar.Brand>
             <Navbar.Brand><NavLink  to={'/car'}>Car List</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink  to={'/dashboard'}>Dash Board</NavLink></Navbar.Brand>
 
 
          

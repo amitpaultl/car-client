@@ -22,7 +22,7 @@ const Singup = () => {
         const userAdd = {
             name,
             email,
-            role: checkBox
+            role: checkBox ? "seller" : 'user'
         }
 
 
@@ -44,8 +44,8 @@ const Singup = () => {
                             .then(res => res.json())
                             .then(data => {
                                 if (data.success) {
-                                    toast.success('Successfully sign up')
-                                    setLoading(false)
+                                    getUserToken(email)
+
                                 }
                             })
                             .catch(error => {
@@ -78,7 +78,7 @@ const Singup = () => {
                 const userAdd = {
                     name: user.displayName,
                     email: user.email,
-                    role: false
+                    role: 'user'
                 }
                 // fetch user post
                 fetch('http://localhost:5000/user', {
@@ -91,8 +91,7 @@ const Singup = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.success) {
-                            toast.success('Successfully sign up')
-                            setLoading(false)
+                            getUserToken(user.email)
                         }
                     })
                     .catch(error => {
@@ -107,6 +106,22 @@ const Singup = () => {
             });
 
     }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken)
+                    toast.success('Successfully sign up')
+                    setLoading(false)
+                    
+                }
+            })
+    }
+
+
+
     return (
         <div className='login-section mx-auto'>
 
@@ -126,10 +141,16 @@ const Singup = () => {
                         <input required name="password" type="password" className="form-control" placeholder="Password" aria-label="Password" />
                     </div>
                     <div className="form-group checkbox clearfix">
-                        <div className="form-check checkbox-theme float-start">
+                    <div className="form-check checkbox-theme float-start">
                             <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={() => setCheck(!check)} />
                             <label className="form-check-label" htmlFor="rememberMe">
-                                Are You Seller Account Please Check It
+                                Are You doing Seller Account Please Check It
+                            </label>
+                        </div>
+                        <div className="form-check checkbox-theme float-start">
+                            <input className="form-check-input"   />
+                            <label className="form-check-label" htmlFor="rememberMe">
+                                Are You doing Buyer Account Please Check It
                             </label>
                         </div>
 

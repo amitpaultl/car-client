@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Link,useLocation,useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import google from '../../assert/image/Group 573.png'
 import { AuthContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 const Login = () => {
-    const {setLoading,loading,signin,signInGoogle} = useContext(AuthContext);
+    const { setLoading, loading, signin, signInGoogle } = useContext(AuthContext);
 
     // location
     const location = useLocation();
@@ -16,34 +16,47 @@ const Login = () => {
     const navigate = useNavigate()
 
     // email login
-    const handlerForm =(e)=>{
+    const handlerForm = (e) => {
         e.preventDefault()
         const common = e.target;
         const email = common.email.value
         const password = common.password.value
-        signin(email,password)
-        .then((userCredential) => {
-            // Signed in 
-            navigate(from,{replace:true})
-            
-            
-          })
-          .catch((error) => {
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-            setLoading(false)
-          });
+        signin(email, password)
+            .then((userCredential) => {
+                // Signed in 
+                getUserToken(email)
+
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                setLoading(false)
+            });
     }
 
     // google sign up
-    const googleHandel =()=>{
-    
+    const googleHandel = () => {
+
         signInGoogle()
-        .then(()=>{
-             navigate(from,{replace:true})
-        })
-       
+            .then(() => {
+                navigate(from, { replace: true })
+            })
+
         setLoading(false)
+    }
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken)
+                    
+                    navigate(from, { replace: true })
+                    setLoading(false)
+
+                }
+            })
     }
 
 
@@ -56,7 +69,7 @@ const Login = () => {
                         WELCOME TO
                     </h2>
                     <h3>Login into your account</h3>
-                    <form  onSubmit={handlerForm}>
+                    <form onSubmit={handlerForm}>
                         <div className="form-group clearfix">
                             <input name="email" type="email" className="form-control" placeholder="Email Address" aria-label="Email Address" />
                         </div>
@@ -73,15 +86,15 @@ const Login = () => {
                             <Link className="forgot-password">Forgot Password</Link>
                         </div>
                         <div className="form-group clearfix">
-                      
-                                <button type="submit" className="btn btn-lg btn-4 btn-primary ">
-                                    {
-                                        loading ? <div className="spinner-grow loadingLogin" role="status">
-                                            <span className="visually-hidden">Loading...</span>
-                                        </div> : 'Login'
-                                    }
-                                </button>
-                           
+
+                            <button type="submit" className="btn btn-lg btn-4 btn-primary ">
+                                {
+                                    loading ? <div className="spinner-grow loadingLogin" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div> : 'Login'
+                                }
+                            </button>
+
                         </div>
                         <div className="extra-login clearfix">
                             <span>Or Login With</span>

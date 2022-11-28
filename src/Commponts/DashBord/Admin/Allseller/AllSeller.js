@@ -9,13 +9,13 @@ const AllSeller = () => {
 
 
 
-    const { data: user, isLoading,refetch } = useQuery({
+    const { data: user, isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             try {
                 const res = await fetch('http://localhost:5000/user', {
                     headers: {
-                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
 
                 })
@@ -33,14 +33,14 @@ const AllSeller = () => {
         return <Loding></Loding>
     }
 
-    const sellerUser = user?.data?.filter(userSeller => userSeller.role)
+    const sellerUser = user?.data?.filter(userSeller => userSeller.role === 'seller' )
 
     // verifyHandaler
     const verifyHandaler = (email) => {
         axios(`http://localhost:5000/user/${email}`, {
             method: 'PUT',
             headers: {
-                // authorization : `bearer ${localStorage.getItem('accessToken')}`
+                authorization : `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(data => {
@@ -50,18 +50,49 @@ const AllSeller = () => {
             })
     }
 
-    
-if (sellerUser.length === 0) {
-    return (
-        <div className="featured-car">
-            <div className="featured-title">
-                <div className="main-title">
-                    <h1><span className='text-uppercase'>No Seller Available</span></h1>
+    // delete
+    const deleteProduct = (userSeler) => {
+        fetch(`http://localhost:5000/user/${userSeler._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(data.message)
+
+                refetch()
+            })
+    }
+
+
+    // No Buyer Available
+
+    if (sellerUser.length === 0) {
+        return (
+            <div className="featured-car">
+                <div className="featured-title">
+                    <div className="main-title">
+                        <h1><span className='text-uppercase'>No Buyer Available</span></h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
+
+
+    if (sellerUser.length === 0) {
+        return (
+            <div className="featured-car">
+                <div className="featured-title">
+                    <div className="main-title">
+                        <h1><span className='text-uppercase'>No Seller Available</span></h1>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className='sellProduct'>
             <div className="featured-title">
@@ -78,6 +109,7 @@ if (sellerUser.length === 0) {
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Verify</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,14 +123,15 @@ if (sellerUser.length === 0) {
                                 <td>{userSeler?.email}</td>
 
                                 <td>
-                                    {/* {
+                                    {
                                         userSeler?.verify ? <p className='text-success'> Verify Confirm </p> : <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
-                                    } */}
+                                    }
+
+
                                     
 
-                                    <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
-
                                 </td>
+                                <td><button type="button" onClick={() => deleteProduct(userSeler)} className="btn btn-danger">Delete</button></td>
                             </tr>)
                         }
 

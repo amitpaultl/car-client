@@ -16,7 +16,10 @@ import Home from "../Page/Home/Home";
 import Login from "../Page/Login/Login";
 import SingleProduct from "../Page/SingleProduct/SingleProduct";
 import Singup from "../Page/Singup/Singup";
+import AdminRoute from "./Admin";
 import PravectRoute from "./PravectRoute";
+import SellerRoute from "./SellerRoute";
+import UserRoute from "./UserRout";
 
 export const router = createBrowserRouter([
     {
@@ -60,32 +63,32 @@ export const router = createBrowserRouter([
         element: <PravectRoute><MainDasbord></MainDasbord></PravectRoute>,
         children:[
             {
-                path:'/dashboard/',
-                element:<SellerDashBord></SellerDashBord>
+                path:'/dashboard/SellerAddProduct',
+                element:<SellerRoute><SellerDashBord></SellerDashBord></SellerRoute> 
             },
             {
                 path:'/dashboard/SellerProduct',
-                element:<SellerProduct></SellerProduct>
+                element:<SellerRoute><SellerProduct></SellerProduct></SellerRoute> 
             },
             {
                 path:'/dashboard/allSeller',
-                element:<AllSeller></AllSeller>
+                element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
                 path:'/dashboard/allBuyer',
-                element:<AllBuyer></AllBuyer>
+                element:<AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
                 path:'/dashboard/report',
-                element:<ReportProduct></ReportProduct>
+                element: <AdminRoute><ReportProduct></ReportProduct></AdminRoute>
             },
             {
                 path:'/dashboard/user',
-                element:<User></User>
+                element:<UserRoute><User></User></UserRoute>
             },
             {
                 path:'/dashboard/payment/:id',
-                element:<PayMent></PayMent>
+                element:<UserRoute><PayMent></PayMent></UserRoute>
             },
         ]
         

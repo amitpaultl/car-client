@@ -2,17 +2,18 @@ import React, { Children, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../UseHook/useAdmin';
+import useUser from '../UseHook/useUser';
 
-const AdminRoute = ({ children }) => {
+const UserRoute = ({ children }) => {
     // usecontext
     const { user, loading } = useContext(AuthContext)
     // admin route
-    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
+    const [isUser,isUserLoading] = useUser(user?.email)
 
     // location
     const location = useLocation()
     // loding
-    if (loading || isAdminLoading) {
+    if (loading || isUserLoading) {
         return (
             <div className="text-center mt-5 ">
 
@@ -23,7 +24,7 @@ const AdminRoute = ({ children }) => {
         )
     }
 
-    if (user && isAdmin) {
+    if (user && isUser) {
         return children
     }
 
@@ -32,4 +33,4 @@ const AdminRoute = ({ children }) => {
     );
 };
 
-export default AdminRoute;
+export default UserRoute;

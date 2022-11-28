@@ -1,19 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import Loding from '../../../Loading/Loding';
 
 const AllBuyer = () => {
 
 
 
-    
-    const { data: user, isLoading } = useQuery({
+
+    const { data: user, isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             try {
                 const res = await fetch('http://localhost:5000/user', {
                     headers: {
-                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
 
                 })
@@ -25,27 +26,43 @@ const AllBuyer = () => {
         }
     })
 
-  
+    // delete
+    const deleteProduct = (userSeler) => {
+        fetch(`http://localhost:5000/user/${userSeler._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(data.message)
+
+                refetch()
+            })
+    }
+
+
     // loading
     if (isLoading) {
         return <Loding></Loding>
     }
 
-    const sellerUser =  user?.data?.filter(userSeller => !userSeller.role )
+    const sellerUser = user?.data?.filter(userSeller => userSeller.role === 'user')
 
-        
-if (sellerUser.length === 0) {
-    return (
-        <div className="featured-car">
-            <div className="featured-title">
-                <div className="main-title">
-                    <h1><span className='text-uppercase'>No Buyer Available</span></h1>
+
+    if (sellerUser.length === 0) {
+        return (
+            <div className="featured-car">
+                <div className="featured-title">
+                    <div className="main-title">
+                        <h1><span className='text-uppercase'>No Buyer Available</span></h1>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
-}
- 
+        )
+    }
+
 
     return (
         <div className='sellProduct'>
@@ -56,30 +73,33 @@ if (sellerUser.length === 0) {
                 </div>
             </div>
             <div >
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">NO</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    
-                    
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NO</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
                         {
-                            sellerUser.map((userSeler,i) =>   <tr key={i} >                      
-                                <td>{i +1}</td>
+                            sellerUser.map((userSeler, i) => <tr key={i} >
+                                <td>{i + 1}</td>
                                 <td><strong>{userSeler?.name}</strong></td>
                                 <td>{userSeler?.email}</td>
+                                <td><button type="button" onClick={() => deleteProduct(userSeler)} className="btn btn-danger">Delete</button></td>
                             </tr>)
                         }
 
 
-                </tbody>
-            </table>
-        </div>
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     );

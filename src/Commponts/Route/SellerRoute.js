@@ -1,22 +1,28 @@
 import React, { Children, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthProvider } from '../../Context/AuthContext/AuthContext';
+import { AuthContext } from '../Context/AuthProvider';
+import useSeller from '../UseHook/UseSeller';
 
-const PravectRoute = ({ children }) => {
+const SellerRoute = ({ children }) => {
     // usecontext
-    const { user, loading } = useContext(AuthProvider)
+    const { user, loading } = useContext(AuthContext)
+   // is seller 
+   const [isSeller,isSellerLoading] = useSeller(user?.email)
     // location
     const location = useLocation()
     // loding
-    if (loading) {
+    if (loading || isSellerLoading) {
         return (
-            <div class="spinner-grow" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="text-center mt-5 ">
+
+                <div className="spinner-grow text-center mt-5" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
             </div>
         )
     }
 
-    if (user) {
+    if (user && isSeller) {
         return children
     }
 
@@ -25,4 +31,4 @@ const PravectRoute = ({ children }) => {
     );
 };
 
-export default PravectRoute;
+export default SellerRoute;
