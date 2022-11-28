@@ -1,17 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import Loding from '../../Loading/Loding';
 import './SellerDashBord.css'
 
 const SellerDashBord = () => {
     const { user } = useContext(AuthContext);
+    const [load, setLoad] = useState(false)
     // usenavigate
     const navigate = useNavigate()
     const data = new Date().toJSON().slice(0, 10);
 
     const productHandler=(e)=>{
         e.preventDefault()
+        setLoad(true)
         const common = e.target;
         const productname = common.productname.value
         const location = common.location.value
@@ -49,7 +52,7 @@ const SellerDashBord = () => {
                     data
                 }
                 // post data
-                fetch(`http://localhost:5000/addProduct`,{
+                fetch(`https://car-server-amitpaultl.vercel.app/addProduct`,{
                     method:'POST',
                     headers:{
 
@@ -61,6 +64,7 @@ const SellerDashBord = () => {
                 .then(res=> res.json())
                 .then(data=>{
                     toast.success(data.message)
+                    setLoad(false)
                     navigate('/')
                 } )
             }
@@ -70,6 +74,9 @@ const SellerDashBord = () => {
    
     }
 
+    if(load){
+        return <Loding></Loding>
+    }
    
 
     return (

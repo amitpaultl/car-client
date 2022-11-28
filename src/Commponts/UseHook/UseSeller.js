@@ -7,7 +7,11 @@ const useSeller = (email) => {
     useState(() => {
         if (email) {
 
-            fetch(`http://localhost:5000/seller/admin/${email}`)
+            fetch(`https://car-server-amitpaultl.vercel.app/seller/admin/${email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                    

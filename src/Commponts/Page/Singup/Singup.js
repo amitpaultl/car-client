@@ -34,7 +34,7 @@ const Singup = () => {
 
 
                         // fetch user post
-                        fetch('http://localhost:5000/user', {
+                        fetch('https://car-server-amitpaultl.vercel.app/user', {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
@@ -81,7 +81,7 @@ const Singup = () => {
                     role: 'user'
                 }
                 // fetch user post
-                fetch('http://localhost:5000/user', {
+                fetch('https://car-server-amitpaultl.vercel.app/user', {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
@@ -108,7 +108,7 @@ const Singup = () => {
     }
 
     const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://car-server-amitpaultl.vercel.app/jwt?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data.accessToken) {
@@ -141,16 +141,16 @@ const Singup = () => {
                         <input required name="password" type="password" className="form-control" placeholder="Password" aria-label="Password" />
                     </div>
                     <div className="form-group checkbox clearfix">
-                    <div className="form-check checkbox-theme float-start">
+                    <div className="form-check checkbox-theme float-start ">
                             <input className="form-check-input" type="checkbox" id="rememberMe" name='rememberMe' onClick={() => setCheck(!check)} />
                             <label className="form-check-label" htmlFor="rememberMe">
-                                Are You doing Seller Account Please Check It
+                                 Seller Account 
                             </label>
                         </div>
-                        <div className="form-check checkbox-theme float-start">
+                        <div className="form-check checkbox-theme float-start mx-5">
                             <input className="form-check-input"   />
                             <label className="form-check-label" htmlFor="rememberMe">
-                                Are You doing Buyer Account Please Check It
+                                Buyer Account 
                             </label>
                         </div>
 

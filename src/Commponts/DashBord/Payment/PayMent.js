@@ -16,7 +16,12 @@ const PayMent = () => {
     useEffect(() => {
         if (id) {
 
-            axios(`http://localhost:5000/booking/${id}`)
+            axios(`https://car-server-amitpaultl.vercel.app/booking/${id}`,{
+                headers:{
+
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+            })
                 .then(res => {
                     setProduct(res.data)
                 })

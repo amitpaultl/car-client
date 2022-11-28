@@ -7,7 +7,11 @@ const useAdmin = (email) => {
     useState(() => {
         if (email) {
 
-            fetch(`http://localhost:5000/admin/admin/${email}`)
+            fetch(`https://car-server-amitpaultl.vercel.app/admin/admin/${email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                    

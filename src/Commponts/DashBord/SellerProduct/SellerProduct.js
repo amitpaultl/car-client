@@ -13,13 +13,13 @@ const SellerProduct = () => {
     const { user } = useContext(AuthContext);
     console.log(user?.email);
     // react query data fatch
-    const url = `http://localhost:5000/myProduct?email=${user?.email}`;
+    const url = `https://car-server-amitpaultl.vercel.app/myProduct?email=${user?.email}`;
     const { data: addProduct = [], refetch, isLoading } = useQuery({
         queryKey: ['addProduct', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
 
             });
@@ -30,10 +30,10 @@ const SellerProduct = () => {
 
     // advertiseAdd 
     const advertiseAdd = (product) => {
-        fetch(`http://localhost:5000/addProduct/${product._id}`, {
+        fetch(`https://car-server-amitpaultl.vercel.app/addProduct/${product._id}`, {
             method: 'PUT',
             headers: {
-                // authorization : `bearer ${localStorage.getItem('accessToken')}`
+                authorization : `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -46,10 +46,10 @@ const SellerProduct = () => {
 
     // delete
     const deleteProduct = (product) => {
-        fetch(`http://localhost:5000/addProduct/${product._id}`, {
+        fetch(`https://car-server-amitpaultl.vercel.app/addProduct/${product._id}`, {
             method: 'DELETE',
             headers: {
-                // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -60,10 +60,10 @@ const SellerProduct = () => {
             })
     }
 
+
     if (isLoading) {
         return <Loding></Loding>
     }
-
 
     if (addProduct?.data?.length === 0) {
         return (
@@ -76,6 +76,8 @@ const SellerProduct = () => {
             </div>
         )
     }
+
+  
 
     return (
         <div className='sellProduct'>

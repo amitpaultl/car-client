@@ -149,7 +149,7 @@ const Home = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
                     </div>
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
@@ -167,7 +167,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
@@ -185,7 +185,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
@@ -203,7 +203,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">

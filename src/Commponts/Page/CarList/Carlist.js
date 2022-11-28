@@ -10,7 +10,7 @@ const Carlist = () => {
         queryKey: ['user'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/addProduct', {
+                const res = await fetch('https://car-server-amitpaultl.vercel.app/addProduct', {
                     headers: {
                         // authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },

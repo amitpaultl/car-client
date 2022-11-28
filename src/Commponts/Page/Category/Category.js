@@ -15,7 +15,7 @@ const Category = () => {
         queryKey: ['user'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/category/${id}`, {
+                const res = await fetch(`https://car-server-amitpaultl.vercel.app/category/${id}`, {
                     headers: {
                         // authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },

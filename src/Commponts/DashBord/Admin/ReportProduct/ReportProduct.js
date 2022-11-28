@@ -8,13 +8,13 @@ const ReportProduct = () => {
 
 
 
-    const { data: user, isLoading,refetch } = useQuery({
+    const { data: user, isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/addProduct', {
+                const res = await fetch('https://car-server-amitpaultl.vercel.app/addProduct', {
                     headers: {
-                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
 
                 })
@@ -27,29 +27,30 @@ const ReportProduct = () => {
     })
 
     // delete
-    // const deleteProduct = (product) => {
-    //     fetch(`http://localhost:5000/addProduct/${product._id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             // authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             toast.success(data.message)
+    const deleteProduct = (product) => {
+        fetch(`https://car-server-amitpaultl.vercel.app/addProduct/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(data.message)
 
-    //             refetch()
-    //         })
-    // }
-
-    // loading
-    if (isLoading) {
-        return <Loding></Loding>
+                refetch()
+            })
     }
+
+
 
     const sellerUser = user?.data?.filter(userSeller => userSeller.report)
 
-    console.log(sellerUser);
+          // loading
+          if (isLoading) {
+            return <Loding></Loding>
+        }
+
     if (sellerUser.length === 0) {
         return (
             <div className="featured-car">
@@ -61,6 +62,7 @@ const ReportProduct = () => {
             </div>
         )
     }
+
 
 
     return (
@@ -76,6 +78,7 @@ const ReportProduct = () => {
                     <thead>
                         <tr>
                             <th scope="col">NO</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Seller Name</th>
                             <th scope="col">Product</th>
                             <th scope="col">Seller Email</th>
@@ -89,10 +92,12 @@ const ReportProduct = () => {
                         {
                             sellerUser.map((userSeler, i) => <tr key={i} >
                                 <td>{i + 1}</td>
+                                <td><img className='addProductimg' src={userSeler?.image} alt="" /></td>
+
                                 <td><strong>{userSeler?.UserName}</strong></td>
                                 <td>{userSeler?.productname}</td>
                                 <td>{userSeler?.email}</td>
-                                {/* <td><button onClick={() => deleteProduct(userSeler)} type="button" className="btn btn-danger">Delete</button></td> */}
+                                <td><button onClick={() => deleteProduct(userSeler)} type="button" className="btn btn-danger">Delete</button></td>
 
                             </tr>)
                         }

@@ -2,15 +2,13 @@ import React from 'react';
 
 const DasbordMenu = () => {
     return (
-        <div>
+        <div className='SellerDashBord'>
             <div className="container">
-                <div className="row">
-                    <div className="col-md-2">
-                        <div className="dasbordManu">
-                            <h2></h2>
-                        </div>
-                    </div>
+            <div className="featured-title">
+                <div className="main-title">
+                    <h1>Welcome <span> Your DashBoard </span></h1>
                 </div>
+            </div>
             </div>
         </div>
     );

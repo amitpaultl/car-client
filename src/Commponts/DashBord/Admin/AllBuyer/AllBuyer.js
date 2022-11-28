@@ -12,7 +12,7 @@ const AllBuyer = () => {
         queryKey: ['user'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/user', {
+                const res = await fetch('https://car-server-amitpaultl.vercel.app/user', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
@@ -28,7 +28,7 @@ const AllBuyer = () => {
 
     // delete
     const deleteProduct = (userSeler) => {
-        fetch(`http://localhost:5000/user/${userSeler._id}`, {
+        fetch(`https://car-server-amitpaultl.vercel.app/user/${userSeler._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -4,7 +4,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import Loding from '../../../Loading/Loding';
 
-const AllSeller = () => {
+const AllUser = () => {
 
 
 
@@ -28,24 +28,11 @@ const AllSeller = () => {
     })
 
 
-  
+
 
     const sellerUser = user?.data?.filter(userSeller => userSeller.role === 'seller' )
 
-    // verifyHandaler
-    const verifyHandaler = (email) => {
-        axios(`https://car-server-amitpaultl.vercel.app/user/${email}`, {
-            method: 'PUT',
-            headers: {
-                authorization : `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(data => {
-                console.log(data);
-                toast.success('User verify')
-                refetch()
-            })
-    }
+   
 
     // delete
     const deleteProduct = (userSeler) => {
@@ -63,16 +50,17 @@ const AllSeller = () => {
             })
     }
 
-
-
-   
-
-          // loading
-          if (isLoading) {
+        // loading
+        if (isLoading) {
             return <Loding></Loding>
         }
 
-    if (sellerUser.length === 0) {
+    // No Buyer Available
+
+ 
+
+
+    if (user.length === 0) {
         return (
             <div className="featured-car">
                 <div className="featured-title">
@@ -87,7 +75,7 @@ const AllSeller = () => {
         <div className='sellProduct'>
             <div className="featured-title">
                 <div className="main-title">
-                    <h1>All Featured <span>Seller </span></h1>
+                    <h1>All  <span>User </span></h1>
                     <p>Consectetur adipisicing elit, sed do eiusmod</p>
                 </div>
             </div>
@@ -98,7 +86,6 @@ const AllSeller = () => {
                             <th scope="col">NO</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Verify</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -107,20 +94,12 @@ const AllSeller = () => {
 
 
                         {
-                            sellerUser.map((userSeler, i) => <tr key={i} >
+                            user?.data?.map((userSeler, i) => <tr key={i} >
                                 <td>{i + 1}</td>
                                 <td><strong>{userSeler?.name}</strong></td>
                                 <td>{userSeler?.email}</td>
 
-                                <td>
-                                    {
-                                        userSeler?.verify ? <p className='text-success'> Verify Confirm </p> : <button type="button" onClick={() => verifyHandaler(userSeler.email)} className="btn btn-success">Verify</button>
-                                    }
-
-
-                                    
-
-                                </td>
+                               
                                 <td><button type="button" onClick={() => deleteProduct(userSeler)} className="btn btn-danger">Delete</button></td>
                             </tr>)
                         }
@@ -134,4 +113,4 @@ const AllSeller = () => {
     );
 };
 
-export default AllSeller;
+export default AllUser;

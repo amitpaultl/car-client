@@ -21,9 +21,9 @@ const SingleProduct = () => {
         queryKey: ['addProduct'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/addProduct/${id.id}`, {
+                const res = await fetch(`https://car-server-amitpaultl.vercel.app/addProduct/${id.id}`, {
                     headers: {
-                        // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
 
                 })
@@ -64,10 +64,12 @@ const SingleProduct = () => {
         }
 
         // fetch user post
-        fetch('http://localhost:5000/booking', {
+        fetch('https://car-server-amitpaultl.vercel.app/booking', {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(booking)
         })

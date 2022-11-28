@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllUser from "../DashBord/Admin/All User/AllUser";
 import AllBuyer from "../DashBord/Admin/AllBuyer/AllBuyer";
 import AllSeller from "../DashBord/Admin/Allseller/AllSeller";
 import ReportProduct from "../DashBord/Admin/ReportProduct/ReportProduct";
+import DasbordMenu from "../DashBord/DasbordMenu/DasbordMenu";
 import MainDasbord from "../DashBord/MainDasbord/MainDasbord";
 import PayMent from "../DashBord/Payment/PayMent";
 import SellerDashBord from "../DashBord/SellerDashBord/SellerDashBord";
@@ -63,6 +65,10 @@ export const router = createBrowserRouter([
         element: <PravectRoute><MainDasbord></MainDasbord></PravectRoute>,
         children:[
             {
+                path:'/dashboard',
+                element:<DasbordMenu></DasbordMenu>
+            },
+            {
                 path:'/dashboard/SellerAddProduct',
                 element:<SellerRoute><SellerDashBord></SellerDashBord></SellerRoute> 
             },
@@ -73,6 +79,10 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/allSeller',
                 element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
+            },
+            {
+                path:'/dashboard/allUser',
+                element:<AdminRoute><AllUser></AllUser></AdminRoute>
             },
             {
                 path:'/dashboard/allBuyer',

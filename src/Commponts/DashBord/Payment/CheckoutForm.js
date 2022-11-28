@@ -21,11 +21,11 @@ const CheckoutForm = ({ product }) => {
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         if (price) {
-            fetch("http://localhost:5000/create-payment-intent", {
+            fetch("https://car-server-amitpaultl.vercel.app/create-payment-intent", {
                 method: "POST",
                 headers: {
                     "content-Type": "application/json",
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify({ price }),
             })
@@ -92,11 +92,11 @@ const CheckoutForm = ({ product }) => {
                 bookingId:_id,
                 productId:id
              }
-            fetch('http://localhost:5000/payments',{
+            fetch('https://car-server-amitpaultl.vercel.app/payments',{
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json" ,
-                //   authorization: `bearer ${localStorage.getItem('accessToken')}`
+                  authorization: `bearer ${localStorage.getItem('accessToken')}`
                   },
                 body: JSON.stringify(payment),
             })

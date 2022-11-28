@@ -30,3 +30,15 @@ textarea.product-dis {
     background: #fff;
     border: 2px solid #f0151f;
 }
+
+@media (max-width: 575.98px) { 
+    table.table {
+        font-size: 9px;
+    }
+
+    table.table button {
+        font-size: 11px;
+        padding: 2px;
+    }
+
+ }

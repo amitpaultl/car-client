@@ -1,25 +1,53 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import useUser from '../../../UseHook/useUser';
 
 const FeaturedCard = ({ publics }) => {
 
     const { user } = useContext(AuthContext)
+    // user
+    // const [isUser] = useUser(user.email)
+
+    // reportClick
+
+    const [reportClick ,setReportClick] = useState(false)
 
     const { _id, UserName, image, location, originalPrice, productname, resalePrice, data , varifyUser,paid} = publics
+
+
+        //  report 
+        const reportProduct =(id)=>{
+            const report = id
+            setReportClick(true)
+            
+            fetch(`https://car-server-amitpaultl.vercel.app/report`,{
+                method:'PUT',
+                headers:{
+    
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body:JSON.stringify({report})
+            })
+            .then(res=> res.json())
+            .then(data=>{
+                toast.success(data.message)
+            } )
+        }
+
+
+
+
+
+
     if(paid){
-        return (
-            <div className="featured-car">
-                <div className="featured-title">
-                    <div className="main-title">
-                        <h1><span className='text-uppercase'>No Car Available</span></h1>
-                    </div>
-                </div>
-            </div>
-        )
+        return 
     }
+    
     return (
-        <div className="col-md-4">
+        <div className="col-lg-4 col-md-6">
             <div className="car-box-3">
                 <div className="photo-thumbnail">
                     <div className="photo">
@@ -59,6 +87,10 @@ const FeaturedCard = ({ publics }) => {
 
 
                         </li>
+                        {
+                             <li> <button   onClick={()=>reportProduct(_id)}  className='bg-danger text-light pointer-a' disabled={reportClick}>Report</button> </li>
+                        }
+                        
                     </ul>
                 </div>
             </div>

@@ -10,18 +10,18 @@ import { AuthContext } from '../Context/AuthProvider';
 import './Header.css'
 
 function NavScrollExample() {
-  const { user ,logout} = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   // singOut
-  const singOut =()=>{
+  const singOut = () => {
     logout()
-    .then(()=>{
-      localStorage.clear()
-    })
-    .catch((error) => {
-      const errorMessage = error.message;
-      toast.error(errorMessage)
-     
-    });
+      .then(() => {
+        localStorage.clear()
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage)
+
+      });
   }
   return (
     <Navbar bg="light" expand="lg">
@@ -33,28 +33,30 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="mx-auto my-2 my-lg-0 menu"
-            
+
             navbarScroll
           >
-            <Navbar.Brand><NavLink  to={'/'}>Home</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink  to={'/blog'}>Blog</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink  to={'/car'}>Car List</NavLink></Navbar.Brand>
-            <Navbar.Brand><NavLink  to={'/dashboard'}>Dash Board</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink to={'/'}>Home</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink to={'/blog'}>Blog</NavLink></Navbar.Brand>
+            <Navbar.Brand><NavLink to={'/car'}>Car List</NavLink></Navbar.Brand>
+            {
+              user &&
+              <Navbar.Brand><NavLink to={'/dashboard'}>Dash Board</NavLink></Navbar.Brand>
+            }
 
 
-         
 
           </Nav>
           <div className="d-flex">
             {
               user ? <Button onClick={singOut} variant="outline-success">LogOut</Button> : <div className='login-Button'>
-              <Button variant="outline-success" className='mx-2'>
-                <Link className='login-Button' to={'/login'}>login</Link>
-              </Button>
-              <Button variant="outline-success " className='mx-2'>
-                <Link className='login-Button' to={'/singup'}>SignUp</Link>
-              </Button>
-                
+                <Button variant="outline-success" className='mx-2'>
+                  <Link className='login-Button' to={'/login'}>login</Link>
+                </Button>
+                <Button variant="outline-success " className='mx-2'>
+                  <Link className='login-Button' to={'/singup'}>SignUp</Link>
+                </Button>
+
               </div>
             }
 
