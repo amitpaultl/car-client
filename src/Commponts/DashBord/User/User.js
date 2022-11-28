@@ -1,14 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link,  } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 import Loding from '../../Loading/Loding';
 
 const User = () => {
+
+        const { user } = useContext(AuthContext)
+    
         // 
        // data load singe product 
-       const { data: products, refetch, isLoading } = useQuery({
+       const { data: booking, refetch, isLoading } = useQuery({
         queryKey: ['addProduct'],
         queryFn: async () => {
             try {
@@ -26,6 +30,8 @@ const User = () => {
         }
     })
 
+
+    const products = booking?.data.filter(book => user.email === book.email)
 
 
 
@@ -70,7 +76,7 @@ const User = () => {
         return <Loding></Loding>
     }
     
-if (products?.data?.length === 0) {
+if (products?.length === 0) {
     return (
         <div className="featured-car">
             <div className="featured-title">
@@ -104,7 +110,7 @@ if (products?.data?.length === 0) {
                 <tbody>
                     {
 
-                        products?.data?.map((product, i) => <tr key={i}>
+                        products?.map((product, i) => <tr key={i}>
                             <th scope="row">{i + 1}</th>
                             <td><img className='addProductimg' src={product?.image} alt="" /></td>
                             <td><strong>{product?.productName}</strong> </td>

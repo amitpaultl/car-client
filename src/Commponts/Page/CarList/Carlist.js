@@ -30,21 +30,20 @@ const Carlist = () => {
         return <Loding></Loding>
     }
 
+    // filter publish product
+
+
+const unreverse = products?.data?.filter(product => product.publish)
+
+const publish = unreverse?.reverse()
+
     // No Car Available
 
     if (products?.data?.length === 0) {
-        return (
-            <div className="featured-car">
-                <div className="featured-title">
-                    <div className="main-title">
-                        <h1><span className='text-uppercase'>No Car Available</span></h1>
-                    </div>
-                </div>
-            </div>
-        )
+
     }
 
-
+console.log(products);
     return (
         <div className='featured-car'>
             <div className="featured-title">
@@ -59,7 +58,7 @@ const Carlist = () => {
                         
 
                         {
-                            products?.data?.map(cars => <FeaturedCard publics={cars} key={cars._id}></FeaturedCard>)
+                            publish?.map(cars => <FeaturedCard publics={cars} key={cars._id}></FeaturedCard>)
                         }
                     </div>
                 </div>

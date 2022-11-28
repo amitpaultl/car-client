@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 
 
@@ -12,7 +13,7 @@ const CheckoutForm = ({ product }) => {
     const [success, setSuccess] = useState('')
     const [transactionid, setTransactionid] = useState('')
 
-    const { price, email, userName,_id } = product;
+    const { price, email, userName,_id,id } = product;
 
     const stripe = useStripe();
     const elements = useElements();
@@ -88,7 +89,8 @@ const CheckoutForm = ({ product }) => {
                 price,
                 transactionId:paymentIntent.id,
                 email,
-                bookingId:_id
+                bookingId:_id,
+                productId:id
              }
             fetch('http://localhost:5000/payments',{
                 method: "POST",
@@ -101,7 +103,8 @@ const CheckoutForm = ({ product }) => {
             .then(res=>res.json())
             .then(data => {
                 console.log(data);
-                setSuccess('Congrats! your pament');
+                toast.success('Congrats! your payment')
+                setSuccess('Congrats! your payment');
                 setTransactionid(paymentIntent.id);
             })
         }

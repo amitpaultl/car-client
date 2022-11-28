@@ -6,7 +6,18 @@ const FeaturedCard = ({ publics }) => {
 
     const { user } = useContext(AuthContext)
 
-    const { _id, UserName, image, location, originalPrice, productname, resalePrice, data , varifyUser} = publics
+    const { _id, UserName, image, location, originalPrice, productname, resalePrice, data , varifyUser,paid} = publics
+    if(paid){
+        return (
+            <div className="featured-car">
+                <div className="featured-title">
+                    <div className="main-title">
+                        <h1><span className='text-uppercase'>No Car Available</span></h1>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="col-md-4">
             <div className="car-box-3">
