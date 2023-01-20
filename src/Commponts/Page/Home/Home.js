@@ -1,7 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Featured from './Featured/Featured';
+// import Animate from 'animate.css-react'
+import 'animate.css/animate.css'
 import './Home.css'
+import video from '../../assert/video/BLENDER.mp4'
+import Advantages from './Advantages/Advantages';
+import Latest from './Latest/Latest';
+import Blog from './Blog/Blog';
+
+import team from '../../assert/image/t01.jpg'
+import team1 from '../../assert/image/t02.jpg'
+import team2 from '../../assert/image/t03.jpg'
+import team3 from '../../assert/image/t04.jpg'
 
 const Home = () => {
 
@@ -10,6 +21,10 @@ const Home = () => {
 
             {/* banner area */}
             <div className="banner-area">
+                <div className="car-bg">
+                    <video src={video} autoPlay loop muted></video>
+
+                </div>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
@@ -44,16 +59,25 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="col-md-4 ">
-                            <div className='cat-bg-3 category-text'>
+                            {/* <Animate 
+                            appear="fadeInDown"
+                            durationAppear={1000}
+                            > */}
+                            <div appear="fadeInDown"
+                                durationAppear={1000} component="div" className='cat-bg-3 category-text'>
 
                                 <Link to={'/category/bentley'} className=" ">
                                     <h2>BENTLEY</h2>
                                 </Link>
                             </div>
+                            {/* </Animate> */}
+
                         </div>
                     </div>
                 </div>
             </div>
+            {/* least news */}
+            <Latest></Latest>
             {/* Featured area  */}
             <Featured></Featured>
             {/*service area  */}
@@ -64,7 +88,7 @@ const Home = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="fade-right" data-aos-duration="1000">
                             <div className="service-info-2">
                                 <div className="icon">
                                     <i>
@@ -77,14 +101,14 @@ const Home = () => {
                                 </div>
                                 <div className="detail">
                                     <h5>
-                                       Highly  Secured
+                                        Highly  Secured
                                     </h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt.</p>
                                     <a href="services.html" className="read-more">Read more...</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="fade-right" data-aos-duration="1000">
                             <div className="service-info-2">
                                 <div className="icon">
                                     <i>
@@ -102,7 +126,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-duration="1000">
                             <div className="service-info-2">
                                 <div className="icon">
                                     <i>
@@ -120,7 +144,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="fade-left" data-aos-duration="1000">
                             <div className="service-info-2">
                                 <div className="icon">
                                     <i>
@@ -131,7 +155,7 @@ const Home = () => {
                                 </div>
                                 <div className="detail">
                                     <h5>
-                                    Free Support
+                                        Free Support
                                     </h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt.</p>
                                     <a href="services.html" className="read-more">Read more...</a>
@@ -141,6 +165,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            {/* avatars */}
+            <Advantages></Advantages>
             {/* our team */}
             <div className="our-team">
                 <div className="container">
@@ -149,11 +175,11 @@ const Home = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in-down">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
-                                        <img src="https://storage.googleapis.com/theme-vessel-items/checking-sites/carhouse-html/HTML/main/img/avatar/avatar-9.jpg" alt="team-1" className="img-fluid" />
+                                        <img src={team} alt="team-1" className="img-fluid" />
                                         <div className="overlay">
                                             <div className="border">
 
@@ -167,11 +193,11 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in-down">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
-                                        <img src="https://storage.googleapis.com/theme-vessel-items/checking-sites/carhouse-html/HTML/main/img/avatar/avatar-10.jpg" alt="team-1" className="img-fluid" />
+                                        <img src={team1} alt="team-1" className="img-fluid" />
                                         <div className="overlay">
                                             <div className="border">
 
@@ -185,11 +211,11 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in-down">
                             <div className="slide slide-box">
                                 <div className="team-1">
                                     <div className="photo">
-                                        <img src="https://storage.googleapis.com/theme-vessel-items/checking-sites/carhouse-html/HTML/main/img/avatar/avatar-11.jpg" alt="team-1" className="img-fluid" />
+                                        <img src={team3} alt="team-1" className="img-fluid" />
                                         <div className="overlay">
                                             <div className="border">
 
@@ -203,11 +229,11 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-6">
-                            <div className="slide slide-box">
+                        <div className="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in-down">
+                            <div className="slide slide-box animate__fadeInRight">
                                 <div className="team-1">
                                     <div className="photo">
-                                        <img src="https://storage.googleapis.com/theme-vessel-items/checking-sites/carhouse-html/HTML/main/img/avatar/avatar-12.jpg" alt="team-1" className="img-fluid" />
+                                        <img src={team3} alt="team-1" className="img-fluid" />
                                         <div className="overlay">
                                             <div className="border">
 
@@ -224,6 +250,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <Blog></Blog>
         </div>
     );
 };

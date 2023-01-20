@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PravectRoute><MainDasbord></MainDasbord></PravectRoute>,
+        element: <MainDasbord></MainDasbord>,
         children:[
             {
                 path:'/dashboard',
@@ -70,11 +70,11 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/SellerAddProduct',
-                element:<SellerRoute><SellerDashBord></SellerDashBord></SellerRoute> 
+                element:<SellerDashBord></SellerDashBord> 
             },
             {
                 path:'/dashboard/SellerProduct',
-                element:<SellerRoute><SellerProduct></SellerProduct></SellerRoute> 
+                element:<SellerProduct></SellerProduct>
             },
             {
                 path:'/dashboard/allSeller',
@@ -94,11 +94,11 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/user',
-                element:<UserRoute><User></User></UserRoute>
+                element:<User></User>
             },
             {
                 path:'/dashboard/payment/:id',
-                element:<UserRoute><PayMent></PayMent></UserRoute>
+                element:<PayMent></PayMent>
             },
         ]
         

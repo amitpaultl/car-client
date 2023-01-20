@@ -47,7 +47,7 @@ const FeaturedCard = ({ publics }) => {
     }
     
     return (
-        <div className="col-lg-4 col-md-6">
+        <div className="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="1000">
             <div className="car-box-3">
                 <div className="photo-thumbnail">
                     <div className="photo">

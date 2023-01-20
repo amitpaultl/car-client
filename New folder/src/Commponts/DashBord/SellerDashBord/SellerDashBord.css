@@ -1,0 +1,44 @@
+.SellerDashBord{
+    padding: 100px 0;
+  
+}
+
+.form-group select{
+    width: 100%;
+    padding: 12px;
+}
+
+textarea.product-dis {
+    width: 100%;
+}
+
+.addProduct {
+    text-align: center;
+}
+
+.addProduct button {
+    padding: 10px 67px;
+    background: #f0151f;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+}
+
+.addProduct button:hover {
+    color: #f0151f;
+    background: #fff;
+    border: 2px solid #f0151f;
+}
+
+@media (max-width: 575.98px) { 
+    table.table {
+        font-size: 9px;
+    }
+
+    table.table button {
+        font-size: 11px;
+        padding: 2px;
+    }
+
+ }

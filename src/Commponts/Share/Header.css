@@ -8,9 +8,8 @@ a.logo {
 
 .menu a {
     font-size: 18px;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Open Sans';
     text-decoration: none;
     color: #515151;
 }
